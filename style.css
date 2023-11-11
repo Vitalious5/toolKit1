@@ -75,11 +75,13 @@ textarea{
 
 #pretext{
     margin-bottom: 2%;
+    max-width: 100%;
+    min-width: 100%;
 }
 
 #restext{
     max-width: 75%;
-
+    min-width: 75%;
 }
 
 .partTwo .items{
@@ -163,6 +165,17 @@ button:hover {
     margin-top: 1%;
 }
 
+#reset{
+    background-color: #3b3b3e;
+    color: #fff;
+}
+
+#reset:hover{
+    background-color: #8a8a8b;
+    color: #fff;
+}
+
+
 /*COMPARE CONTENT PAGE STYLE*/
 
 .compare-content-up{
@@ -196,13 +209,20 @@ button:hover {
     min-width:  50rem;
 }
 
+
+.compare-content-middle{
+    display: flex;
+}
+
 .compare-content-down{
     display: flex;
-    margin: auto;
+    flex-direction: column;
+    align-items: center;
 }
 
 .compare-bottom{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin-top: 27vh;
 }
@@ -212,9 +232,41 @@ button:hover {
     color: red;
 }
 
-.card {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-top: 10px;
-    display: none; /* Initially hide the cards */
+.cards{
+    display: flex;
+    margin: 2% 2% 2% 2%;
+    width: 100%;
+
 }
+
+.card {
+    display: flex;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    padding: 10px;
+    margin: 0% 2% 2% 6%;
+    width: 40%;
+    min-height: 20vh;
+    max-height: 40vh;
+    overflow-y: auto;
+    display: none; /* Initially hide the cards */
+
+}
+
+#compareButton{
+    padding: 1rem 6rem;
+    margin: 1% 2%;
+}
+
+#clearButton{
+    padding: 1rem 4rem;
+    background-color: #3b3b3e;
+    color: #fff;
+}
+
+#clearButton:hover{
+    padding: 1rem 4rem;
+    background-color: #8a8a8b;
+    color: #fff;
+}
+

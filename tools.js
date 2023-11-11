@@ -55,7 +55,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.getElementById('copyright-year').innerText = new Date().getFullYear();
-    document.getElementById('copyright-year-compare-page').innerText = new Date().getFullYear();
+
+        // Get reference to the reset button
+        var resetButton = document.getElementById("reset");
+
+        // Add event listener to the 'Reset' button
+        resetButton.addEventListener("click", function () {
+            // Reload the page
+            location.reload();
+        });
 });
 
 
@@ -80,6 +88,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
+        // Replace newline characters with <br> tags
+        diffHtml = diffHtml.replace(/\n/g, '<br>');
+
         card.innerHTML = diffHtml;
     }
 
@@ -98,4 +109,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add event listener
     compareButton.addEventListener("click", compareTexts);
+
+    // Get reference to the clear button
+    var clearButton = document.getElementById("clearButton");
+
+    // Add event listener to the 'Clear' button
+    clearButton.addEventListener("click", function () {
+        // Refresh the page
+        location.reload();
+    });
+
+    document.getElementById('copyright-year-compare-page').innerText = new Date().getFullYear();
+    
 });
