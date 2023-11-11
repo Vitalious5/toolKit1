@@ -1,0 +1,220 @@
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: 0;
+  }
+  html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+
+  /*body style*/
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: center; */
+}
+
+/* Add this to your existing CSS styles */
+
+header {
+    background-color: #021d2d!important;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: none;
+}
+
+/*content style*/
+.content{
+    margin-top: 1%;
+}
+
+/*form style */
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 50%;
+    margin: auto;
+}
+
+textarea{
+    width: 100%;
+    min-height: 11rem;
+}
+
+#pretext{
+    margin-bottom: 2%;
+}
+
+#restext{
+    max-width: 75%;
+
+}
+
+.partTwo .items{
+    margin: 2% 2% 2% 2%;
+    border: #021d2d solid 1px;
+    padding: 2rem;
+    background-color: #a7a2a24a;
+}
+
+.partThree{
+    display: flex;
+    justify-content: center;
+
+}
+
+.itemsOne{
+    display: flex;
+    
+}
+
+.itemsTwo{
+    display: flex;
+    align-items: center;
+}
+
+.itemsFour{
+    display: flex;
+}
+
+.itemsTwo #blank{
+    max-width: 5%;
+    /* margin: 1% 1% 1% 1% */
+
+}
+
+.itemsThree{
+    display: flex;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="text"]{
+    width: 28%;
+    padding: 8px;
+    margin: 1% 2% 2% 1%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+button {
+    background-color: #FFBC00;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#clipboard{
+    margin: 3% 2% 2% 2%;
+    padding: 2% 2% 2% 2%;
+    max-height: 9rem;
+}
+
+button:hover {
+    background-color: #e7c978;
+}
+
+.bottom{
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+}
+
+/*COMPARE CONTENT PAGE STYLE*/
+
+.compare-content-up{
+    display: flex;
+    justify-content: center;
+}
+
+.compare-content-up-one{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2% 2% 2% 2%;
+    align-items: center;
+}
+
+#labelOne{
+    max-width: 20%;
+}
+
+.compare-content-up-two{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2% 2% 2% 2%;
+    align-items: center;
+}
+
+.text-compare{
+    margin: 2% 2% 2% 2%;
+    min-height: 25rem;
+    min-width:  50rem;
+}
+
+.compare-content-down{
+    display: flex;
+    margin: auto;
+}
+
+.compare-bottom{
+    display: flex;
+    justify-content: center;
+    margin-top: 27vh;
+}
+
+.diff-char {
+    background-color: #ffaaaa;
+    color: red;
+}
+
+.card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 10px;
+    display: none; /* Initially hide the cards */
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Investigation Tools - Line Breaks</title>
+
+</head>
+<body>
+
+    <!-- Header with Navbar -->
+    <div class="navbar">
+        <header>
+            <h1>Investigation Tools</h1>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Line Breaks</a></li>
+                    <li><a href="/compareText.html">Compare Text</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <div class="content">
+        <form>
+            <div class="partOne">
+                <label for="pretext">Text to edit:</label>
+                <textarea type="text" id="pretext" name="pretext"></textarea>
+            </div>
+            
+            <div class="partTwo">
+                <label>Choose Settings:</label>
+                <div class="items">
+                    <div class="itemsOne">
+                        <input type="radio" id="blank" name="blank" value="blank" checked>
+                        <label for="blank">Replace space with comma</label>
+                    </div>
+                    <div class="itemsOne">
+                        <input type="radio" id="blank" name="blank" value="blank">
+                        <label for="blank">Blank Space</label>
+                    </div>
+                    <div class="itemsTwo">
+                        <!-- <input type="radio" id="custom" name="custom" value="custom"> -->
+                        <input type="radio" id="custom" name="custom" value="blank">
+                        <label for="blank">Custom text:</label>
+                        <input type="text" id="customText" name="custom" value="">
+                    </div>
+                    <div class="itemsThree">
+                        <input type="checkbox" id="removeDuplicates" name="removeDuplicates">
+                        <label for="removeDuplicates">Remove duplicate lines</label>
+                    </div>
+                    <div class="itemsFour">
+                        <input type="checkbox" id="add1" name="add1">
+                        <label for="add1">Insert into 'IN ( )' - for SQL query</label>
+                    </div>
+
+                    <button type="submit">Excute</button>
+                    <button type="submit">Reset</button>
+                </div>
+            </div>
+            <label for="pretext">Result:</label>
+            <div class="partThree">
+                <textarea type="text" id="restext" name="restext"></textarea>
+                <button type="submit" id="clipboard">Copy to clip board</button>
+            </div>
+        </form>
+    
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="bottom">
+            <p>&copy; Created by Vitaly Sidorenko <span id="copyright-year"></span>.</p>
+        </div>
+    </footer>
+
+    <script src="tools.js" defer></script>
+</body>
+</html>
