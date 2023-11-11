@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function highlightDifferences(originalText, newText, card) {
         var diffHtml = '';
-        for (var i = 0; i < originalText.length; i++) {
+        for (var i = 0; i < newText.length; i++) {
             var originalChar = originalText.charAt(i);
 
             if (originalChar !== newText.charAt(i)) {
