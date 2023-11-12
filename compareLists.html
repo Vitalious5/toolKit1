@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>String Tools - Compare Text</title>
+</head>
+<body>
+
+    <!-- Header with Navbar -->
+    <div class="navbar">
+        <header>
+            <h1>String Tools</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Line Breaks</a></li>
+                    <li><a href="compareText.html">Compare Text</a></li>
+                    <li><a href="compareLists.html">Compare Lists</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <div></div>
+    <div class="compare-content-up">
+        <div class="compare-content-up-one">
+            <label id="labelOne" for="pretext">List 1:</label>
+            <textarea name="textOne" id="textOne" class="text-compare"></textarea>
+        </div>
+        <div class="compare-content-up-two">
+            <label for="pretext">List 2:</label>
+            <textarea name="textTwo" id="textTwo" class="text-compare"></textarea>
+        </div>
+    </div>
+    
+    <div class="compare-content-down">
+        <button id="compareListsButton" type="submit">Compare</button>
+        <button id="clearButton" type="submit">Clear</button>
+        <div class="cards">
+            <div id="newCard" class="card"></div>
+            <div id="originalCard" class="card"></div>
+            <!-- New Card for Unique Words in List 2 -->
+            <h3 id="uniqueWordsHeader" style="display: none;">Unique Words in List 2:</h3>
+            <div id="uniqueWordsCard" class="card" style="display: none;">
+                <!-- Display unique words here -->
+                <p></p> 
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="compare-bottom">
+            <p>Created by Vitaly Sidorenko <span id="copyright-year-compare-page"></span></p>
+        </div>
+    </footer>
+
+    <script src="tools.js" defer></script>
+</body>
+</html>
