@@ -20,8 +20,6 @@
     justify-content: center; */
 }
 
-/* Add this to your existing CSS styles */
-
 header {
     background-color: #021d2d!important;
     color: #fff;
@@ -55,7 +53,6 @@ nav a:hover {
 }
 
 /*form style */
-
 
 form {
     display: flex;
