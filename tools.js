@@ -1,12 +1,15 @@
+/*INDEX PAGE CODE*/
+
 document.addEventListener("DOMContentLoaded", function () {
     // Get references to the relevant elements
     var pretextTextarea = document.getElementById("pretext");
     var restextTextarea = document.getElementById("restext");
-    var customRadio = document.getElementById("custom");
+    var customRadio = document.getElementById("spaceToComma");
     var add1Checkbox = document.getElementById("add1");
     var removeDuplicatesCheckbox = document.getElementById("removeDuplicates");
-    var executeButton = document.getElementById("execute");
+    var commasToLineBreak = document.getElementById("commasToLineBreaks");
     var copyButton = document.getElementById("clipboard");
+    var resultText;
 
     // Add event listener to the form
     document.querySelector("form").addEventListener("submit", function (e) {
@@ -14,18 +17,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Get the value from the 'Text to edit' textarea
         var originalText = pretextTextarea.value;
-
-        // Check if the 'Remove Duplicates' checkbox is checked
-        if (removeDuplicatesCheckbox.checked) {
-            originalText = removeDuplicateLines(originalText);
+       
+        if (removeDuplicatesCheckbox.checked && !commasToLineBreak.checked && !customRadio.checked) {
+            resultText = removeDuplicateLines(originalText);
+        }
+        // Check if the 'Change commas to line breaks' radio button is selected
+        else if (commasToLineBreak.checked) {
+            // Check if the 'Remove Duplicates' checkbox is checked
+            resultText = originalText.replace(/,\s*/g, "\n");
+            if (removeDuplicatesCheckbox.checked) {
+                resultText = removeDuplicateLines(resultText);
+            }
+        }
+        // Check if the 'Custom text' radio button is selected
+        else if (customRadio.checked) {
+            // Check if the 'Remove Duplicates' checkbox is checked
+            if (removeDuplicatesCheckbox.checked) {
+                originalText = removeDuplicateLines(originalText);
+            }
+            resultText = originalText.replace(/\n/g, ", ");
         }
 
-        // Check if the 'Custom text' radio button is selected
-        var resultText = custom.checked
-            ? originalText.replace(/\n/g, ", ")
-            : originalText.replace(/\n/g, ", ");
 
-        // Check if the 'Insert into IN ( )' checkbox is checked
+        // Check if the 'Insert into IN ( )' checkbox is checked (Edit for a SQL condition)
         if (add1Checkbox.checked) {
             // If checked, wrap each original line in single quotes
             var lines = resultText.split(", ");
@@ -122,3 +136,78 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('copyright-year-compare-page').innerText = new Date().getFullYear();
     
 });
+
+/*COMPARE LISTS PAGE CODE*/
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    var originalTextarea = document.getElementById("textOne");
+    var newTextarea = document.getElementById("textTwo");
+    var compareButton = document.getElementById("compareListsButton");
+    var resetButton = document.getElementById("clearButton");
+    var originalCard = document.getElementById("originalCard");
+    var newCard = document.getElementById("newCard");
+
+    
+    function highlightDifferences(originalText, newText, card) {
+        var diffHtml = '';
+        for (var i = 0; i < newText.length; i++) {
+            var originalChar = originalText.charAt(i);
+
+            if (originalChar !== newText.charAt(i)) {
+                diffHtml += '<span class="diff-char">' + newText.charAt(i) + '</span>';
+            } else {
+                diffHtml += originalChar;
+            }
+        }
+
+        // Replace newline characters with <br> tags
+        diffHtml = diffHtml.replace(/\n/g, '<br>');
+
+        card.innerHTML = diffHtml;
+    }
+
+    // Function to find words in list2 but not in list1
+    function findUniqueWords(list1, list2) {
+        var wordsList1 = list1.split(/\s+/);
+        var wordsList2 = list2.split(/\s+/);
+
+        // Find words in list2 that are not in list1
+        var uniqueWords = wordsList2.filter(function(word) {
+            return wordsList1.indexOf(word) === -1;
+        });
+
+        return uniqueWords.join(', ');
+    }
+
+    function compareTexts() {
+        var list1Text = originalTextarea.value;
+        var list2Text = newTextarea.value;
+
+        // Highlight differences for each card
+        highlightDifferences(list1Text, list2Text, originalCard);
+        highlightDifferences(list2Text, list1Text, newCard);
+
+        // Show the cards after comparison
+        originalCard.style.display = "block";
+        newCard.style.display = "block";
+
+        // Find and display unique words from List 2 in a new card
+        var uniqueWords = findUniqueWords(list1Text, list2Text);
+        document.getElementById("uniqueWordsCard").innerHTML = uniqueWords;
+        document.getElementById("uniqueWordsCard").style.display = "block";
+        document.getElementById("uniqueWordsHeader").style.display = "block";
+    }
+
+    // Add event listener
+    compareButton.addEventListener("click", compareTexts);
+
+    resetButton.addEventListener("click", function () {
+        // Reload the page
+        location.reload();
+    });
+    
+});
+
+
