@@ -49,26 +49,18 @@ document.addEventListener("DOMContentLoaded", function () {
         // Check if the 'Replace commas with blank space' radio button is selected
         else if (commaToSpace.checked) {
             resultText = originalText.replace(/,/g, " ");
-        // Check if the 'Custom text' radio button is selected
-        }
-
+         // Check if the 'Change commas to line breaks' radio button is selected
+        }else if (commasToLineBreak.checked) {
+            originalText = originalText.replace(/,\s*/g, "\n");
+        }     
         // Check if the 'Insert into IN ( )' checkbox is checked (Edit for a SQL condition)
-        if (add1Checkbox.checked) {
+        if (add1.checked) {
             // If checked, wrap each original line in single quotes
             var lines = resultText.split(", ");
             resultText = lines.map((line) => "'" + line + "'").join(", ");
             // Add "IS IN" before the parentheses
             resultText = "IN (" + resultText + ")";
         }
-
-        // Check if the 'Change commas to line breaks' radio button is selected
-        if (commasToLineBreak.checked) {
-            originalText = originalText.replace(/,\s*/g, "\n");
-        }
-
-
-
-
         // Set the result in the 'Result' textarea
         restextTextarea.value = resultText;
     });
