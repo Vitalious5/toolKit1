@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var restextTextarea = document.getElementById("restext");
     var customRadio = document.getElementById("spaceToComma");
     var add1Checkbox = document.getElementById("add1");
+    var breakToSpcae = document.getElementById("breakToSpcae");
+    var commaToSpace = document.getElementById("commaToSpace");
     var removeDuplicatesCheckbox = document.getElementById("removeDuplicates");
     var commasToLineBreak = document.getElementById("commasToLineBreaks");
     var copyButton = document.getElementById("clipboard");
@@ -30,14 +32,25 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
         // Check if the 'Custom text' radio button is selected
-        else if (customRadio.checked) {
+        else if (custom.checked) {
+            // Get the custom text entered by the user
+            var customText = document.getElementById("customText").value;
             // Check if the 'Remove Duplicates' checkbox is checked
             if (removeDuplicatesCheckbox.checked) {
                 originalText = removeDuplicateLines(originalText);
             }
-            resultText = originalText.replace(/\n/g, ", ");
+            // Replace line breaks with custom text
+            resultText = originalText.replace(/\n/g, customText);
         }
-
+        // Check if the 'Replace line breaks with blank space' radio button is selected
+        else if (breakToSpcae.checked) {
+            resultText = originalText.replace(/\n/g, " ");
+        }
+        // Check if the 'Replace commas with blank space' radio button is selected
+        else if (commaToSpace.checked) {
+            resultText = originalText.replace(/,/g, " ");
+        // Check if the 'Custom text' radio button is selected
+        }
 
         // Check if the 'Insert into IN ( )' checkbox is checked (Edit for a SQL condition)
         if (add1Checkbox.checked) {
@@ -47,6 +60,14 @@ document.addEventListener("DOMContentLoaded", function () {
             // Add "IS IN" before the parentheses
             resultText = "IN (" + resultText + ")";
         }
+
+        // Check if the 'Change commas to line breaks' radio button is selected
+        if (commasToLineBreak.checked) {
+            originalText = originalText.replace(/,\s*/g, "\n");
+        }
+
+
+
 
         // Set the result in the 'Result' textarea
         restextTextarea.value = resultText;
