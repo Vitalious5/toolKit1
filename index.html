@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>String Tools - Line Breaks</title>
-    <link rel="icon" type="image/x-icon" href="Assets/textIcon.png">
+    <link rel="icon" type="image/x-icon" href="/Assets/textIcon.png">
 
 </head>
 <body>
@@ -35,17 +35,20 @@
                 <label>Choose Line Break Settings:</label>
                 <div class="items">
                     <div class="itemsOne">
-                        <input type="radio" id="blank" name="blank" value="blank" checked>
+                        <input type="radio" id="spaceToComma" name="blank">
                         <label for="blank">Replace space with comma</label>
                     </div>
                     <div class="itemsOne">
-                        <input type="radio" id="blank" name="blank" value="blank">
+                        <input type="radio" id="commasToLineBreaks" name="blank">
+                        <label for="blank">Replace commas with line breaks</label>
+                    </div>
+                    <div class="itemsOne">
+                        <input type="radio" id="blank" name="blank">
                         <label for="blank">Blank Space</label>
                     </div>
                     <div class="itemsTwo">
-                        <!-- <input type="radio" id="custom" name="custom" value="custom"> -->
-                        <input type="radio" id="custom" name="custom" value="blank">
-                        <label for="blank">Custom text:</label>
+                        <input type="radio" id="custom" name="blank" value="blank">
+                        <label for="text">Custom text:</label>
                         <input type="text" id="customText" name="custom" value="">
                     </div>
                     <div class="itemsThree">
@@ -57,7 +60,7 @@
                         <label for="add1">Insert into 'IN ( )' - for SQL query</label>
                     </div>
 
-                    <button type="submit">Excute</button>
+                    <button id="execute" type="submit">Excute</button>
                     <button id="reset" type="submit">Reset</button>
                 </div>
             </div>
