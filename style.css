@@ -270,3 +270,9 @@ button:hover {
     color: #fff;
 }
 
+/* COMPARE LISTS PAGE */
+
+#compareListsButton{
+    padding: 1rem 6rem;
+    margin: 1% 2%;
+}
