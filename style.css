@@ -122,9 +122,9 @@ label {
 }
 
 input[type="text"]{
-    width: 28%;
+    width: 16%;
     padding: 8px;
-    margin: 1% 2% 2% 1%;
+    margin: 1% 1% 1% 1%;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
