@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Get references to the relevant elements
     var pretextTextarea = document.getElementById("pretext");
     var restextTextarea = document.getElementById("restext");
-    var customRadio = document.getElementById("spaceToComma");
+    var spaceToComma = document.getElementById("spaceToComma");
     var add1Checkbox = document.getElementById("add1");
     var breakToSpcae = document.getElementById("breakToSpcae");
     var commaToSpace = document.getElementById("commaToSpace");
@@ -20,15 +20,23 @@ document.addEventListener("DOMContentLoaded", function () {
         // Get the value from the 'Text to edit' textarea
         var originalText = pretextTextarea.value;
        
-        if (removeDuplicatesCheckbox.checked && !commasToLineBreak.checked && !customRadio.checked) {
+        if (removeDuplicatesCheckbox.checked && !commasToLineBreak.checked && !custom.checked && !spaceToComma.checked && !breakToSpcae.checked && !commaToSpace.checked) {
             resultText = removeDuplicateLines(originalText);
-        }
         // Check if the 'Change commas to line breaks' radio button is selected
-        else if (commasToLineBreak.checked) {
-            // Check if the 'Remove Duplicates' checkbox is checked
+        }else if (commasToLineBreak.checked){
             resultText = originalText.replace(/,\s*/g, "\n");
+            // Check if the 'Remove Duplicates' checkbox is checked
             if (removeDuplicatesCheckbox.checked) {
                 resultText = removeDuplicateLines(resultText);
+            }
+        // Check if the 'Change line breaks to commas' radio button is selected
+        }else if (spaceToComma.checked){
+            // Check if the 'Remove Duplicates' checkbox is checked
+            if (removeDuplicatesCheckbox.checked) {
+                resultText = removeDuplicateLines(originalText);
+                resultText = resultText.replace(/\n/g, ", ");
+            }else{
+                resultText = originalText.replace(/\n/g, ", ");
             }
         }
         // Check if the 'Custom text' radio button is selected
@@ -49,18 +57,43 @@ document.addEventListener("DOMContentLoaded", function () {
         // Check if the 'Replace commas with blank space' radio button is selected
         else if (commaToSpace.checked) {
             resultText = originalText.replace(/,/g, " ");
-         // Check if the 'Change commas to line breaks' radio button is selected
-        }else if (commasToLineBreak.checked) {
-            originalText = originalText.replace(/,\s*/g, "\n");
-        }     
+        }
+        // Check if the 'Add characters before and after each word' radio button is selected
+        else if (document.getElementById("customWords").checked) {
+            // Get the values from the 'preWord' and 'postWord' input elements
+            var preWord = document.getElementById("preWord").value;
+            var postWord = document.getElementById("postWord").value;
+
+            // Check if the 'Remove Duplicates' checkbox is checked
+            if (removeDuplicatesCheckbox.checked) {
+                originalText = removeDuplicateLines(originalText);
+            }
+
+            // Split the text into an array of words
+            var words = originalText.split(/\s+/);
+
+            // Add characters before and after each word
+            resultText = words.map(function (word) {
+                return preWord + word + postWord;
+            }).join("\n");
+        }
+
         // Check if the 'Insert into IN ( )' checkbox is checked (Edit for a SQL condition)
-        if (add1.checked) {
+        if (add1Checkbox.checked) {
             // If checked, wrap each original line in single quotes
             var lines = resultText.split(", ");
             resultText = lines.map((line) => "'" + line + "'").join(", ");
             // Add "IS IN" before the parentheses
             resultText = "IN (" + resultText + ")";
         }
+
+        // Function to remove duplicate lines from a string
+        function removeDuplicateLines(text) {
+            var lines = text.split(/\r?\n|\r/);
+            var uniqueLines = Array.from(new Set(lines));
+            return uniqueLines.join("\n");
+        }
+
         // Set the result in the 'Result' textarea
         restextTextarea.value = resultText;
     });
@@ -73,13 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // Copy the selected text to the clipboard
         document.execCommand("copy");
     });
-
-    // Function to remove duplicate lines from a string
-    function removeDuplicateLines(text) {
-        var lines = text.split(/\r?\n|\r/);
-        var uniqueLines = Array.from(new Set(lines));
-        return uniqueLines.join("\n");
-    }
 
     document.getElementById('copyright-year').innerText = new Date().getFullYear();
 
