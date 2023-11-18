@@ -16,7 +16,11 @@
     padding: 0;
     display: flex;
     flex-direction: column;
+    /* align-items: center;
+    justify-content: center; */
 }
+
+/* Add this to your existing CSS styles */
 
 header {
     background-color: #021d2d!important;
@@ -51,6 +55,7 @@ nav a:hover {
 }
 
 /*form style */
+
 
 form {
     display: flex;
@@ -118,13 +123,14 @@ textarea{
 
 label {
     display: block;
-    margin-bottom: 8px;
+    margin: 2% 2% 2% 0%;
+    text-align: center;
 }
 
 input[type="text"]{
-    width: 16%;
+    width: 28%;
     padding: 8px;
-    margin: 1% 1% 1% 1%;
+    margin: 1% 2% 2% 1%;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -156,7 +162,7 @@ button:hover {
 
 .bottom{
     display: flex;
-    justify-content: center;
+    justify-content: start;
     margin-top: 1%;
 }
 
@@ -175,7 +181,7 @@ button:hover {
 
 .compare-content-up{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .compare-content-up-one{
@@ -222,29 +228,46 @@ button:hover {
     margin-top: 27vh;
 }
 
-.diff-char {
-    background-color: #ffaaaa;
+.diff-line {
     color: red;
+    display: contents;
 }
 
 .cards{
     display: flex;
-    margin: 2% 2% 2% 2%;
+    flex-direction: column;
+    margin: 2% 2% 2% 0%;
     width: 100%;
 
 }
 
+.cards-up{
+    display: flex;
+    justify-content: space-around;
+    margin: 2% 1% 2% 0%;
+}
+
+.cards-down{
+    margin: auto;
+}
+
+.cards-down #uniqueWordsHeader{
+    text-align: center;
+    margin-bottom: 2%;
+}
+
 .card {
+    font-family: 'Courier New', Courier, monospace; /* Add this line to set the font */
     display: flex;
     border: 1px solid #ddd;
-    background-color: #fff;
+    background-color: #2d2a2a;
+    color: #f7bb4b;
     padding: 10px;
     margin: 0% 2% 2% 6%;
-    width: 40%;
+    width: 41vw;
     min-height: 20vh;
     max-height: 40vh;
     overflow-y: auto;
-    display: none; /* Initially hide the cards */
 
 }
 
@@ -267,7 +290,66 @@ button:hover {
 
 /* COMPARE LISTS PAGE */
 
+#beautifyButton{
+    background-color: #125ca1;
+
+}
+
+#beautifyButton:hover{
+    background-color: #092138;
+
+}
+
 #compareListsButton{
     padding: 1rem 6rem;
     margin: 1% 2%;
+}
+
+/* Add this CSS to your existing styles */
+
+#textOne, #textTwo {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #2d2a2a;
+    color: #f7bb4b;
+    width: 41vw;
+    min-height: 34rem;
+    margin: 2% 2% 2% 9%;
+}
+
+#textOne::selection, #textTwo::selection {
+    background: #936f0c; /* Red background for selected text */
+}
+
+#textOne::placeholder, #textTwo::placeholder {
+    color: #975f38; /* Placeholder text color */
+}
+
+#fileInputOne, #fileInputTwo{
+    margin: 0% 2% 0% 36%;
+    background-color: wheat;
+    padding: 2%;
+}
+
+.textOne{
+    display: flex;
+}
+
+.textOne-left{
+    margin: 0%;
+}
+
+.textOne-right{
+    margin: 0%;
+}
+
+.diff-word {
+    background-color: yellow; /* Change this to your desired highlighting color */
+    font-weight: bold;
+}
+
+.heading{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2%;
 }
