@@ -99,16 +99,21 @@ textarea{
 
 .itemsOne{
     display: flex;
+    margin: 1%;
+    padding: 1%;
     
 }
 
 .itemsTwo{
     display: flex;
     align-items: center;
+    margin: 1%;
+    padding 1%;
 }
 
 .itemsFour{
     display: flex;
+    margin: 2%;
 }
 
 .itemsTwo #blank{
@@ -119,6 +124,7 @@ textarea{
 
 .itemsThree{
     display: flex;
+    margin: 2%;
 }
 
 label {
@@ -128,9 +134,9 @@ label {
 }
 
 input[type="text"]{
-    width: 28%;
-    padding: 8px;
-    margin: 1% 2% 2% 1%;
+    width: 22%;
+    padding: 1.2%;
+    margin: 1% 1% 2% 1%;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -144,10 +150,11 @@ input[type="checkbox"] {
 button {
     background-color: #FFBC00;
     color: #fff;
-    padding: 10px 15px;
+    padding: 2% 7%;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin: 1%;
 }
 
 #clipboard{
