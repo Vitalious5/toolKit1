@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Query Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #021d2d;
+        }
+        .container {
+            background: #ffbc00;
+            padding: 100px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 70%; /* increased initial width */
+        }
+        textarea {
+            width: 100%; /* increased width by 15% */
+            height: 130%; /* increased height by 15% */
+            margin-bottom: 10px;
+            padding: 40px;
+            font-size: 16px;
+            resize: both; /* allow resizing */
+        }
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SQL Query Generator</h1>
+		<h3>Created by Yoni Cohen</h3>
+        <textarea id="sql-template" placeholder="Write your SQL query template here...">INSERT INTO record (recordtype, tipaltistatus, tipaltiid, externalid, instanceid, syncTime, lastSuccessDateUtc, ignoreUpdates) VALUES (2, 1, '{tipaltiid}', '{externalid}', {instanceid}, GETDATE(), GETDATE(), 4);</textarea>
+        <input type="file" id="file-input" />
+        <button onclick="generateQueries()">Generate Queries</button>
+        <textarea id="output" placeholder="Generated SQL queries will appear here..." readonly></textarea>
+    </div>
+
+    <script>
+        function generateQueries() {
+            const sqlTemplate = document.getElementById('sql-template').value;
+            const fileInput = document.getElementById('file-input').files[0];
+            
+            if (!sqlTemplate || !fileInput) {
+                alert('Please fill in the SQL template and select a file!');
+                return;
+            }
+            
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const contents = e.target.result;
+                const lines = contents.trim().split("\n");
+                const headers = lines[0].split(",").map(header => header.trim());
+                const queries = lines.slice(1).map(line => {
+                    const values = line.split(",").map(value => value.trim());
+                    let query = sqlTemplate;
+                    headers.forEach((header, index) => {
+                        query = query.replace(new RegExp(`\\{${header}\\}`, 'g'), values[index]);
+                    });
+                    return query;
+                });
+                
+                document.getElementById('output').value = queries.join("\n");
+            };
+            
+            reader.readAsText(fileInput);
+        }
+    </script>
+</body>
+</html>
