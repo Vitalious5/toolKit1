@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV to JSON Formatter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #021d2d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffbc00;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 70%;
+            color: black;
+        }
+        textarea, input, button {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        textarea {
+            height: 150px;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSV to JSON Formatter</h1>
+        <textarea id="json-template" placeholder="Write your JSON template here...">{ "recordtype": 2, "tipaltistatus": 1, "tipaltiid": "{tipaltiid}", "externalid": "{externalid}", "instanceid": {instanceid}, "syncTime": "GETDATE()", "lastSuccessDateUtc": "GETDATE()", "ignoreUpdates": 4 }</textarea>
+        <input type="file" id="file-input" accept=".csv"/>
+        <button onclick="generateJSON()">Generate JSON</button>
+        <textarea id="output" placeholder="Generated JSON objects will appear here..." readonly></textarea>
+    </div>
+
+    <script>
+        function parseCSV(csv, delimiter = ',') {
+            const lines = csv.split('\n');
+            const headers = lines[0].split(delimiter);
+            const records = lines.slice(1).map(line => {
+                const values = line.split(delimiter);
+                const record = {};
+                headers.forEach((header, index) => {
+                    record[header.trim()] = values[index].trim();
+                });
+                return record;
+            });
+            return records;
+        }
+
+        function generateJSON() {
+            const jsonTemplate = document.getElementById('json-template').value;
+            const fileInput = document.getElementById('file-input').files[0];
+
+            if (!jsonTemplate || !fileInput) {
+                alert('Please fill in the JSON template and select a CSV file!');
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const csvContent = e.target.result;
+                const records = parseCSV(csvContent);
+                const keys = Object.keys(records[0]);
+
+                const results = records.map(record => {
+                    let jsonString = jsonTemplate;
+
+                    keys.forEach(key => {
+                        const regex = new RegExp(`\\{${key}\\}`, 'g');
+                        jsonString = jsonString.replace(regex, record[key]);
+                    });
+
+                    return JSON.stringify(JSON.parse(jsonString), null, 2);
+                });
+
+                document.getElementById('output').value = results.join("\n\n");
+            };
+
+            reader.readAsText(fileInput);
+        }
+    </script>
+</body>
+</html>
